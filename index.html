@@ -4,66 +4,58 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yeah！Buddy — 个人博客</title>
-  <meta name="description" content="Yeah！Buddy 的个人博客主页，记录 AI Agent、产品实验、工程实践与长期思考。" />
+  <meta name="description" content="Yeah！Buddy 的个人博客，记录 AI Agent、MCP、自动化工作流、个人产品实验与日常思考。" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #08090a;
-      --panel: #0f1011;
-      --surface: #191a1b;
-      --surface-soft: rgba(255,255,255,0.03);
-      --surface-hover: rgba(255,255,255,0.05);
-      --text: #f7f8f8;
-      --text-soft: #d0d6e0;
-      --text-muted: #8a8f98;
-      --text-faint: #62666d;
-      --border: rgba(255,255,255,0.08);
-      --border-soft: rgba(255,255,255,0.05);
-      --brand: #5e6ad2;
-      --brand-2: #7170ff;
-      --brand-3: #828fff;
-      --green: #10b981;
-      --max: 1180px;
-      --radius: 14px;
-      --radius-sm: 10px;
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface-alt: #f6f5f4;
+      --text: rgba(0, 0, 0, 0.95);
+      --text-soft: #615d59;
+      --text-faint: #a39e98;
+      --line: rgba(0,0,0,0.1);
+      --blue: #0075de;
+      --blue-dark: #005bab;
+      --blue-soft: #f2f9ff;
+      --max: 1040px;
+      --shadow: rgba(0,0,0,0.04) 0px 4px 18px, rgba(0,0,0,0.027) 0px 2px 8px, rgba(0,0,0,0.02) 0px 1px 3px;
+      --radius: 16px;
+      --radius-sm: 12px;
       --pill: 9999px;
-      --shadow: rgba(0,0,0,0.35) 0px 8px 30px;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 20% -10%, rgba(113,112,255,0.22), transparent 26%),
-        radial-gradient(circle at 100% 0%, rgba(94,106,210,0.18), transparent 30%),
-        linear-gradient(180deg, #070809 0%, #08090a 40%, #090a0c 100%);
       font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      font-feature-settings: "cv01", "ss03";
-      line-height: 1.55;
+      color: var(--text);
+      background: linear-gradient(180deg, #fff 0%, #fff 60%, #fbfbfa 100%);
+      line-height: 1.65;
     }
 
     a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
     .container { width: min(calc(100% - 32px), var(--max)); margin: 0 auto; }
 
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 20;
-      backdrop-filter: blur(16px);
-      background: rgba(8,9,10,0.72);
-      border-bottom: 1px solid var(--border-soft);
+      z-index: 10;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
     }
 
     .topbar-inner {
-      min-height: 72px;
+      min-height: 68px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 18px;
     }
 
     .brand {
@@ -71,16 +63,16 @@
       align-items: center;
       gap: 12px;
       font-size: 15px;
-      font-weight: 600;
-      color: var(--text);
+      font-weight: 700;
+      letter-spacing: -0.02em;
     }
 
-    .brand-mark {
-      width: 14px;
-      height: 14px;
-      border-radius: 4px;
-      background: linear-gradient(135deg, var(--brand), var(--brand-2));
-      box-shadow: 0 0 32px rgba(113,112,255,0.45);
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 0 6px rgba(0,117,222,0.12);
     }
 
     .nav {
@@ -90,7 +82,7 @@
       flex-wrap: wrap;
       color: var(--text-soft);
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .nav a:hover { color: var(--text); }
@@ -100,286 +92,287 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 11px 16px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: 1px solid transparent;
       font-size: 14px;
-      font-weight: 500;
-      transition: all .2s ease;
+      font-weight: 600;
+      transition: .2s ease;
     }
 
-    .btn:hover { transform: translateY(-1px); }
     .btn-primary {
-      background: var(--brand);
-      border-color: transparent;
+      background: var(--blue);
       color: #fff;
-      box-shadow: 0 8px 24px rgba(94,106,210,0.35);
+      box-shadow: var(--shadow);
     }
-    .btn-primary:hover { background: var(--brand-3); }
-    .btn-ghost {
-      background: rgba(255,255,255,0.02);
-      color: var(--text-soft);
+    .btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); }
+    .btn-secondary {
+      background: rgba(0,0,0,0.04);
+      border-color: var(--line);
+      color: var(--text);
     }
-    .btn-ghost:hover { background: rgba(255,255,255,0.05); color: var(--text); }
+    .btn-secondary:hover { background: rgba(0,0,0,0.06); }
 
     .hero {
-      padding: 92px 0 64px;
-      overflow: hidden;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
-      gap: 24px;
-      align-items: start;
+      padding: 86px 0 38px;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 12px;
-      border: 1px solid var(--border-soft);
+      padding: 6px 10px;
       border-radius: var(--pill);
-      background: rgba(255,255,255,0.03);
-      color: var(--text-soft);
+      background: var(--blue-soft);
+      color: var(--blue);
       font-size: 12px;
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
     h1 {
       margin: 18px 0 16px;
-      font-size: clamp(44px, 8vw, 76px);
+      font-size: clamp(42px, 8vw, 68px);
       line-height: 0.98;
       letter-spacing: -0.05em;
-      font-weight: 600;
-      max-width: 860px;
+      max-width: 820px;
     }
 
     .hero-copy {
       max-width: 760px;
-      margin: 0 0 28px;
-      color: var(--text-muted);
-      font-size: 18px;
-      line-height: 1.7;
+      margin: 0 0 24px;
+      font-size: 20px;
+      color: var(--text-soft);
     }
 
     .hero-actions {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 34px;
+      margin-bottom: 28px;
     }
 
-    .hero-stats {
+    .hero-meta {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
+      grid-template-columns: 1.4fr 0.8fr;
+      gap: 18px;
+      align-items: start;
     }
 
-    .stat,
     .card,
-    .panel,
-    .timeline-item,
-    .feature {
-      background: var(--surface-soft);
-      border: 1px solid var(--border);
+    .post,
+    .note,
+    .side-card,
+    .cta {
+      background: var(--surface);
+      border: 1px solid var(--line);
       border-radius: var(--radius);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), var(--shadow);
+      box-shadow: var(--shadow);
     }
 
-    .stat {
-      padding: 18px;
-      min-height: 120px;
-    }
+    .card, .side-card, .cta { padding: 22px; }
 
-    .stat strong {
-      display: block;
-      font-size: 28px;
-      line-height: 1;
-      letter-spacing: -0.04em;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-
-    .stat span { color: var(--text-muted); font-size: 14px; }
-
-    .panel {
-      padding: 22px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
-    }
-
-    .profile {
+    .author {
       display: flex;
-      align-items: center;
       gap: 16px;
-      margin-bottom: 18px;
+      align-items: center;
     }
 
-    .avatar {
+    .author img {
       width: 72px;
       height: 72px;
-      border-radius: 18px;
-      border: 1px solid var(--border);
+      border-radius: 20px;
+      border: 1px solid var(--line);
     }
 
-    .profile h2 {
+    .author h2 {
       margin: 0 0 4px;
-      font-size: 24px;
+      font-size: 22px;
       line-height: 1.05;
       letter-spacing: -0.03em;
-      font-weight: 600;
     }
 
-    .muted { color: var(--text-muted); }
-    .stack {
+    .muted { color: var(--text-soft); }
+    .faint { color: var(--text-faint); }
+
+    .chip-row {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin: 18px 0 22px;
+      margin-top: 16px;
     }
 
     .chip {
-      display: inline-flex;
-      align-items: center;
-      padding: 7px 11px;
+      padding: 6px 10px;
       border-radius: var(--pill);
-      border: 1px solid var(--border-soft);
-      background: rgba(255,255,255,0.02);
-      color: var(--text-soft);
+      border: 1px solid var(--line);
+      background: var(--surface-alt);
       font-size: 12px;
-      font-weight: 500;
+      font-weight: 600;
+      color: var(--text);
     }
 
-    .signal {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text-soft);
-      font-size: 13px;
-      margin-bottom: 14px;
-    }
+    main section { padding: 24px 0 74px; }
 
-    .signal::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 0 5px rgba(16,185,129,0.15);
-    }
-
-    main section { padding: 26px 0 84px; }
-    .section-title {
+    .section-head {
       display: flex;
       justify-content: space-between;
-      gap: 22px;
       align-items: end;
-      margin-bottom: 26px;
+      gap: 18px;
+      margin-bottom: 22px;
     }
 
-    .section-title h3 {
-      margin: 0 0 10px;
-      font-size: clamp(32px, 5vw, 48px);
+    .section-head h3 {
+      margin: 0 0 8px;
+      font-size: clamp(30px, 5vw, 44px);
       line-height: 1;
-      letter-spacing: -0.04em;
-      font-weight: 500;
+      letter-spacing: -0.05em;
     }
 
-    .section-title p {
+    .section-head p {
       margin: 0;
-      max-width: 680px;
-      color: var(--text-muted);
+      max-width: 660px;
+      color: var(--text-soft);
       font-size: 16px;
     }
 
-    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-
-    .card, .feature { padding: 22px; height: 100%; }
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 10px;
-      border-radius: var(--pill);
-      background: rgba(113,112,255,0.12);
-      color: #c6cbff;
-      font-size: 12px;
-      font-weight: 500;
-      border: 1px solid rgba(130,143,255,0.18);
-      margin-bottom: 14px;
+    .posts {
+      display: grid;
+      gap: 14px;
     }
 
-    .card h4, .feature h4 {
-      margin: 0 0 10px;
-      font-size: 22px;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      font-weight: 600;
+    .post {
+      padding: 22px 24px;
+      display: grid;
+      gap: 12px;
     }
 
-    .card p, .feature p { margin: 0 0 18px; color: var(--text-muted); font-size: 15px; }
-
-    .card-footer {
-      margin-top: auto;
-      padding-top: 14px;
-      border-top: 1px solid var(--border-soft);
+    .post-top {
       display: flex;
+      gap: 12px;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
       flex-wrap: wrap;
       color: var(--text-faint);
       font-size: 13px;
     }
 
-    .timeline {
+    .tag {
+      display: inline-flex;
+      padding: 5px 9px;
+      border-radius: var(--pill);
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .post h4 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .post p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 16px;
+    }
+
+    .post-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding-top: 12px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      font-size: 14px;
+      color: var(--text-faint);
+    }
+
+    .layout-2 {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .notes {
       display: grid;
       gap: 14px;
     }
 
-    .timeline-item { padding: 18px 20px; }
-    .timeline-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 8px;
-      color: var(--text-faint);
-      font-size: 13px;
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
+    .note {
+      padding: 18px 20px;
     }
 
-    .timeline-item strong {
+    .note strong {
       display: block;
       margin-bottom: 8px;
       font-size: 18px;
       line-height: 1.3;
       letter-spacing: -0.02em;
-      font-weight: 600;
     }
 
-    .feature-grid {
+    .note small {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text-faint);
+    }
+
+    .side-list {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 18px;
+      gap: 12px;
+      margin-top: 16px;
     }
 
-    .code-block {
-      padding: 18px;
-      border-radius: 12px;
-      border: 1px solid var(--border-soft);
-      background: rgba(255,255,255,0.02);
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
+    .side-item {
+      padding-top: 12px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .side-item:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .side-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 16px;
+    }
+
+    .archive {
+      display: grid;
+      gap: 12px;
+    }
+
+    .archive-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
       color: var(--text-soft);
-      font-size: 13px;
-      line-height: 1.8;
-      white-space: pre-wrap;
+      font-size: 15px;
+    }
+
+    .archive-item:last-child { border-bottom: 0; }
+
+    .cta {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
     }
 
     .footer {
-      padding: 36px 0 48px;
-      border-top: 1px solid var(--border-soft);
-      color: var(--text-muted);
+      padding: 32px 0 48px;
+      border-top: 1px solid var(--line);
+      color: var(--text-soft);
       font-size: 14px;
     }
 
@@ -391,23 +384,31 @@
       flex-wrap: wrap;
     }
 
-    .footer-links { display: flex; gap: 14px; flex-wrap: wrap; }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .grid-3,
-      .grid-2,
-      .feature-grid { grid-template-columns: 1fr; }
-      .hero-stats { grid-template-columns: 1fr; }
-      .section-title { flex-direction: column; align-items: start; }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
     }
 
-    @media (max-width: 760px) {
-      .topbar-inner { padding: 14px 0; align-items: start; flex-direction: column; }
+    @media (max-width: 920px) {
+      .hero-meta,
+      .layout-2,
+      .cta { grid-template-columns: 1fr; }
+      .section-head { flex-direction: column; align-items: start; }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner {
+        min-height: unset;
+        padding: 14px 0;
+        align-items: start;
+        flex-direction: column;
+      }
       .nav { gap: 12px; }
-      .hero { padding-top: 72px; }
-      h1 { font-size: clamp(38px, 12vw, 54px); }
-      .hero-copy { font-size: 16px; }
+      .hero { padding-top: 64px; }
+      h1 { font-size: clamp(36px, 12vw, 52px); }
+      .hero-copy { font-size: 18px; }
+      .post h4 { font-size: 24px; }
     }
   </style>
 </head>
@@ -415,13 +416,13 @@
   <header class="topbar">
     <div class="container topbar-inner">
       <a class="brand" href="#top">
-        <span class="brand-mark"></span>
-        <span>Yeah！Buddy / blog</span>
+        <span class="brand-dot"></span>
+        <span>Yeah！Buddy</span>
       </a>
       <nav class="nav">
         <a href="#writing">文章</a>
-        <a href="#projects">项目</a>
-        <a href="#notes">动态</a>
+        <a href="#notes">随记</a>
+        <a href="#archive">归档</a>
         <a href="#about">关于</a>
         <a class="btn btn-primary" href="https://github.com/WangTingYeYe" target="_blank" rel="noreferrer">GitHub</a>
       </nav>
@@ -430,135 +431,104 @@
 
   <main id="top">
     <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">awesome-design-md / Linear-inspired / dark mode</span>
-          <h1>换成更冷静、更科技感一点的个人 blog 首页。</h1>
-          <p class="hero-copy">
-            这一版我改成了 <strong>Linear 风格</strong>：深色背景、微亮边框、克制高对比和更强的产品感。
-            适合你这种偏 <strong>AI Agent / MCP / 自动化 / 开发实验</strong> 的技术个人主页路线。
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#writing">浏览内容</a>
-            <a class="btn btn-ghost" href="#projects">查看项目</a>
+      <div class="container">
+        <span class="eyebrow">awesome-design-md × 更像个人博客的内容风格</span>
+        <h1>把最近在做的事、在学的东西、和一些还没想透的想法，认真写下来。</h1>
+        <p class="hero-copy">
+          这里是 <strong>Yeah！Buddy</strong> 的个人博客。相比上一版偏产品首页的风格，这一版我改得更像真正的 blog：
+          更强调文章入口、随手笔记、归档和作者气质，而不是像 SaaS 官网那样展示功能。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#writing">读最新文章</a>
+          <a class="btn btn-secondary" href="#about">了解我</a>
+        </div>
+        <div class="hero-meta">
+          <div class="card">
+            <div class="author">
+              <img src="https://avatars.githubusercontent.com/u/42265178?v=4" alt="Yeah Buddy avatar" />
+              <div>
+                <h2>Yeah！Buddy</h2>
+                <div class="muted">@WangTingYeYe · Builder / Developer / Explorer</div>
+              </div>
+            </div>
+            <p class="muted" style="margin:16px 0 0;">
+              主要写 AI Agent、MCP、自动化工作流、个人产品实验、开发复盘，以及那些值得被认真记录的日常思考。
+            </p>
+            <div class="chip-row">
+              <span class="chip">AI Agent</span>
+              <span class="chip">MCP</span>
+              <span class="chip">Automation</span>
+              <span class="chip">Python</span>
+              <span class="chip">TypeScript</span>
+              <span class="chip">Notes</span>
+            </div>
           </div>
-          <div class="hero-stats">
-            <div class="stat">
-              <strong>26+</strong>
-              <span>公开仓库与持续迭代中的技术实验</span>
-            </div>
-            <div class="stat">
-              <strong>AI × Dev</strong>
-              <span>以 Agent、MCP、自动化工作流为长期主题</span>
-            </div>
-            <div class="stat">
-              <strong>Build in public</strong>
-              <span>把项目、思考、复盘与经验公开沉淀下来</span>
+          <div class="side-card">
+            <strong style="display:block;font-size:18px;letter-spacing:-0.02em;">现在在关注</strong>
+            <div class="side-list">
+              <div class="side-item">
+                <strong>如何把 Agent 真正用进开发流程</strong>
+                <div class="faint">从 demo 到可复用 workflow</div>
+              </div>
+              <div class="side-item">
+                <strong>MCP 在个人效率系统里的实际价值</strong>
+                <div class="faint">不是概念，而是连接工具与上下文</div>
+              </div>
+              <div class="side-item">
+                <strong>把零散实验整理成长期输出</strong>
+                <div class="faint">项目、文章、复盘三条线并行</div>
+              </div>
             </div>
           </div>
         </div>
-
-        <aside class="panel">
-          <div class="signal">active now</div>
-          <div class="profile">
-            <img class="avatar" src="https://avatars.githubusercontent.com/u/42265178?v=4" alt="Yeah Buddy avatar" />
-            <div>
-              <h2>Yeah！Buddy</h2>
-              <div class="muted">@WangTingYeYe</div>
-            </div>
-          </div>
-          <p class="muted">
-            主要记录 AI Agent、MCP、自动化脚本、个人产品实验，以及那些能真正提升效率的开发工作流。
-          </p>
-          <div class="stack">
-            <span class="chip">AI Agent</span>
-            <span class="chip">MCP</span>
-            <span class="chip">Automation</span>
-            <span class="chip">Python</span>
-            <span class="chip">TypeScript</span>
-            <span class="chip">Product</span>
-          </div>
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-top"><span>focus</span><span>2026</span></div>
-              <strong>把“会跑的 demo”变成“能复用的方法”。</strong>
-              <div class="muted">不仅做实验，也整理成可复用的项目、文档和博客内容。</div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-top"><span>design</span><span>v2</span></div>
-              <strong>这版采用 Linear 风格，更贴近开发者产品审美。</strong>
-              <div class="muted">相比上一版更冷、更锋利，也更有现代工具站点的气质。</div>
-            </div>
-          </div>
-        </aside>
       </div>
     </section>
 
     <section id="writing">
       <div class="container">
-        <div class="section-title">
+        <div class="section-head">
           <div>
             <h3>最新文章</h3>
-            <p>这里先保留为你未来博客内容的主入口。之后我可以继续帮你补真正的文章页、归档页和标签页。</p>
+            <p>这里现在像一个真实博客首页，而不是项目 Landing Page。后续你只要继续加文章链接，就会越来越像你自己的内容阵地。</p>
           </div>
         </div>
-        <div class="grid-3">
-          <article class="card">
-            <span class="tag">agent</span>
-            <h4>我怎样把 AI Agent 真正接入开发工作流</h4>
-            <p>从命令行代理、任务拆解、工具调用，到让 AI 参与真实开发链路，而不是停留在演示层。</p>
-            <div class="card-footer"><span>6 min read</span><span>draft</span></div>
+        <div class="posts">
+          <article class="post">
+            <div class="post-top">
+              <span class="tag">AI Agent</span>
+              <span>预计 6 分钟</span>
+            </div>
+            <h4>我如何把 AI Agent 逐步接入自己的开发工作流</h4>
+            <p>从命令行代理、任务拆解，到让 AI 参与真实开发，而不是只做一次性的“问答助手”。</p>
+            <div class="post-footer">
+              <span>草稿中 · 可以继续扩展为正式文章页</span>
+              <span>2026</span>
+            </div>
           </article>
-          <article class="card">
-            <span class="tag">mcp</span>
-            <h4>MCP 在个人效率系统里最有价值的地方是什么</h4>
-            <p>它不是一个概念展示，而是一种把工具和上下文真正串起来的接口方式。</p>
-            <div class="card-footer"><span>8 min read</span><span>draft</span></div>
-          </article>
-          <article class="card">
-            <span class="tag">build</span>
-            <h4>个人产品实验，为什么要从最小可运行版本开始</h4>
-            <p>当你把灵感快速变成真实页面、脚本和工作流，很多方向会自己显露出来。</p>
-            <div class="card-footer"><span>5 min read</span><span>draft</span></div>
-          </article>
-        </div>
-      </div>
-    </section>
 
-    <section id="projects">
-      <div class="container">
-        <div class="section-title">
-          <div>
-            <h3>精选项目</h3>
-            <p>我保留了与你当前 GitHub 方向最一致的几个项目入口，让这个首页不只是视觉展示，也能承接真实作品。</p>
-          </div>
-        </div>
-        <div class="grid-3">
-          <article class="card">
-            <span class="tag">featured</span>
-            <h4>jiadun_dev_marketplaces</h4>
-            <p>围绕 AI 开发工具、skills、plugins 与 agent 生态的实验仓库，适合放在个人站点的第一屏作品区。</p>
-            <div class="card-footer">
-              <a href="https://github.com/WangTingYeYe/jiadun_dev_marketplaces" target="_blank" rel="noreferrer">open repo</a>
-              <span>2026.03</span>
+          <article class="post">
+            <div class="post-top">
+              <span class="tag">MCP</span>
+              <span>预计 8 分钟</span>
+            </div>
+            <h4>MCP 到底适合解决什么问题，以及它为什么值得长期研究</h4>
+            <p>把工具、上下文和调用方式串起来之后，很多原本零碎的自动化能力开始真正成形。</p>
+            <div class="post-footer">
+              <span>草稿中 · 可以继续扩展为正式文章页</span>
+              <span>2026</span>
             </div>
           </article>
-          <article class="card">
-            <span class="tag">study</span>
-            <h4>llm-agent-study</h4>
-            <p>大模型应用开发学习仓库，后续非常适合发展成一整套博客系列或知识库入口。</p>
-            <div class="card-footer">
-              <a href="https://github.com/WangTingYeYe/llm-agent-study" target="_blank" rel="noreferrer">open repo</a>
-              <span>python</span>
+
+          <article class="post">
+            <div class="post-top">
+              <span class="tag">Build</span>
+              <span>预计 5 分钟</span>
             </div>
-          </article>
-          <article class="card">
-            <span class="tag">mcp</span>
-            <h4>guoguo-mcp-ts / python</h4>
-            <p>同一思路的多语言实现，适合展示你对 MCP 和工程落地的持续探索。</p>
-            <div class="card-footer">
-              <a href="https://github.com/WangTingYeYe/guoguo-mcp-ts" target="_blank" rel="noreferrer">open repo</a>
-              <span>typescript</span>
+            <h4>为什么个人产品实验应该从最小可运行版本开始</h4>
+            <p>我越来越倾向于先做出一个最小页面、最小流程、最小脚本，再决定值不值得继续投入。</p>
+            <div class="post-footer">
+              <span>草稿中 · 可以继续扩展为正式文章页</span>
+              <span>2026</span>
             </div>
           </article>
         </div>
@@ -567,57 +537,80 @@
 
     <section id="notes">
       <div class="container">
-        <div class="section-title">
+        <div class="section-head">
           <div>
-            <h3>最近动态</h3>
-            <p>这一段像是更加结构化的 now page，用来放你最近在做的事、在研究的主题，以及接下来准备写什么。</p>
+            <h3>最近随记</h3>
+            <p>这一块更像 blog 里的碎片记录。适合放短思考、近况更新、以及一些还没发展成完整文章的内容。</p>
           </div>
         </div>
-        <div class="feature-grid">
-          <div class="feature">
-            <span class="tag">now</span>
-            <h4>目前的主线：AI Agent × MCP × 自动化工作流</h4>
-            <p>关注的不只是“能不能做”，而是“如何在真实开发里稳定使用”。因此这个 blog 也会更偏方法论、工程实践和复盘。</p>
-            <div class="code-block">topics = [
-  "AI Agent in real workflows",
-  "MCP integrations",
-  "automation scripts",
-  "developer tools",
-  "personal product experiments"
-]</div>
-          </div>
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-top"><span>writing</span><span>next</span></div>
-              <strong>计划补齐真正的文章页面与文章列表</strong>
-              <div class="muted">下一步最适合加 posts 页面、单篇文章模板和更完整的归档结构。</div>
+        <div class="layout-2">
+          <div class="notes">
+            <div class="note">
+              <small>近况 / Now</small>
+              <strong>最近更想把“会用工具”变成“有自己的方法论”。</strong>
+              <div class="muted">不只是知道某个工具怎么跑，而是形成一套稳定、可以重复使用的工作方式。</div>
             </div>
-            <div class="timeline-item">
-              <div class="timeline-top"><span>design</span><span>updated</span></div>
-              <strong>已从温和浅色版切换为更科技感的深色版</strong>
-              <div class="muted">如果你还想继续换，我也可以再切到 Stripe、Vercel、Framer 等风格。</div>
+            <div class="note">
+              <small>想法 / Notes</small>
+              <strong>博客对我来说，越来越像一个公开整理中的第二大脑。</strong>
+              <div class="muted">写文章并不只是为了输出，更是为了逼自己把想法写清楚、压缩、结构化。</div>
             </div>
-            <div class="timeline-item">
-              <div class="timeline-top"><span>status</span><span>live</span></div>
-              <strong>GitHub Pages 已在线，可继续直接迭代</strong>
-              <div class="muted">后续我改完页面后，只需要提交并 push，就能立即更新线上版本。</div>
+            <div class="note">
+              <small>实践 / Workflow</small>
+              <strong>之后这里会逐步接入真实文章，而不是只保留占位卡片。</strong>
+              <div class="muted">可以继续扩展出 posts 页面、单篇文章模板、标签页和归档页。</div>
             </div>
           </div>
+
+          <aside class="side-card" id="about">
+            <strong style="display:block;font-size:20px;letter-spacing:-0.02em;">关于我</strong>
+            <p class="muted" style="margin:12px 0 0;">
+              我在 GitHub 上公开使用 <strong>@WangTingYeYe</strong>。关注的主题主要是 AI Agent、MCP、自动化工作流、开发实践，以及个人产品实验。
+            </p>
+            <div class="side-list">
+              <div class="side-item">
+                <strong>写作方向</strong>
+                <div class="faint">Agent / MCP / 工具链 / 开发复盘 / 产品实验</div>
+              </div>
+              <div class="side-item">
+                <strong>目前公开项目</strong>
+                <div class="faint">llm-agent-study、jiadun_dev_marketplaces、guoguo-mcp-ts 等</div>
+              </div>
+              <div class="side-item">
+                <strong>站点定位</strong>
+                <div class="faint">更像一个长期更新的个人博客，而不是一次性的自我介绍页</div>
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
 
-    <section id="about">
+    <section id="archive">
       <div class="container">
-        <div class="panel">
-          <div class="section-title" style="margin-bottom:0;">
-            <div>
-              <h3>关于这次改版</h3>
-              <p>你说“换一个”，我就直接把首页从 Notion 式浅色内容风切到了 <strong>awesome-design-md 的 Linear 风格</strong>。这一版更像现代开发者产品主页，也更贴合你的技术方向。</p>
+        <div class="section-head">
+          <div>
+            <h3>归档与入口</h3>
+            <p>我把这一部分也做得更像博客。即使现在还是首版，结构上已经更适合持续生长。</p>
+          </div>
+        </div>
+        <div class="layout-2">
+          <div class="card">
+            <div class="archive">
+              <div class="archive-item"><span>文章归档</span><span>后续可接入 posts 列表页</span></div>
+              <div class="archive-item"><span>主题标签</span><span>AI Agent / MCP / Automation / Build</span></div>
+              <div class="archive-item"><span>项目入口</span><span><a href="https://github.com/WangTingYeYe" target="_blank" rel="noreferrer" style="color:var(--blue);">GitHub Profile</a></span></div>
+              <div class="archive-item"><span>联系</span><span><a href="mailto:42265178+WangTingYeYe@users.noreply.github.com" style="color:var(--blue);">Email</a></span></div>
             </div>
-            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          </div>
+          <div class="cta">
+            <div>
+              <strong style="display:block;font-size:22px;letter-spacing:-0.03em;">这次已经改得更像真正的个人博客了。</strong>
+              <p class="muted" style="margin:8px 0 0;">如果你愿意，我下一步可以继续把这版做成更完整的博客结构，比如加单篇文章页、文章列表页、标签页和友情链接区域。</p>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end;">
               <a class="btn btn-primary" href="https://github.com/WangTingYeYe" target="_blank" rel="noreferrer">查看 GitHub</a>
-              <a class="btn btn-ghost" href="mailto:42265178+WangTingYeYe@users.noreply.github.com">联系我</a>
+              <a class="btn btn-secondary" href="#writing">回到文章</a>
             </div>
           </div>
         </div>
@@ -627,12 +620,12 @@
 
   <footer class="footer">
     <div class="container footer-inner">
-      <span>© 2026 Yeah！Buddy · Linear-inspired homepage on GitHub Pages</span>
+      <span>© 2026 Yeah！Buddy · Personal blog homepage on GitHub Pages</span>
       <div class="footer-links">
-        <a href="#writing">Writing</a>
-        <a href="#projects">Projects</a>
-        <a href="#notes">Notes</a>
-        <a href="#top">Top</a>
+        <a href="#writing">文章</a>
+        <a href="#notes">随记</a>
+        <a href="#archive">归档</a>
+        <a href="#top">返回顶部</a>
       </div>
     </div>
   </footer>
